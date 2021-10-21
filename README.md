@@ -4,9 +4,9 @@ This repository provides codes for the tutorial of networking programming with r
 
 ## content
 
-- tcp and http server ([article](), [code]())
+- tcp and http ([article](), [code]())
 - thread and threadpool ([article](), [code]())
 - asynchronous programming ([article](), [code]())
 - third party and tokio ([artcle](), [code]())
-- coroutine and select ([article](), [code]())
+- select and coroutine ([article](), [code]())
 
