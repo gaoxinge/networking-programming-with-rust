@@ -13,7 +13,6 @@ struct Worker {
     thread: thread::JoinHandle<()>,
 }
 
-
 impl Worker {
     fn new(id: usize, receiver: Arc<Mutex<mpsc::Receiver<Job>>>) -> Worker {
         let thread = thread::spawn(move || loop {
