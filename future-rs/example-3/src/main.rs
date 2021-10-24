@@ -50,5 +50,7 @@ impl Future for Timer {
 
 fn main() {
     let timer = Timer::new(Duration::new(5, 0));
+    println!("Hello");
     block_on(timer);
+    println!("World");
 }
