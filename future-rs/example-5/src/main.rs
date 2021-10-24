@@ -46,7 +46,6 @@ fn main3() {
     }
     
     println!("total: {}", total);
-
 }
 
 fn main() {
