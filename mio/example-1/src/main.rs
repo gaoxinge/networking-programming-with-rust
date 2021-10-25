@@ -7,7 +7,6 @@ use mio::event::Events;
 use mio::net::TcpListener;
 
 fn main() {
-    const SERVER: Token = Token(0);
     let mut token_index = 0;
     let mut poll = Poll::new().unwrap();
     let mut events = Events::with_capacity(128);
@@ -15,13 +14,13 @@ fn main() {
 
     let addr = "127.0.0.1:8000".parse().unwrap();
     let mut server = TcpListener::bind(addr).unwrap();
-    poll.registry().register(&mut server, SERVER, Interest::READABLE).unwrap();
+    poll.registry().register(&mut server, Token(0), Interest::READABLE).unwrap();
 
     loop {
         poll.poll(&mut events, None).unwrap();
         for event in events.iter() {
             match event.token() {
-                SERVER => {
+                Token(0) => {
                     let (mut connection, address) = server.accept().unwrap();
                     println!("accept connection from {}", address);
 
@@ -31,7 +30,7 @@ fn main() {
                     connections.insert(token, connection);
                     
                     // poll.registry().deregister(&mut server).unwrap();
-                    // poll.registry().register(&mut server, SERVER, Interest::READABLE).unwrap();
+                    // poll.registry().register(&mut server, Token(0), Interest::READABLE).unwrap();
                 },
                 token => {
                     let connection = connections.get_mut(&token).unwrap();
